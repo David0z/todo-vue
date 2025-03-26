@@ -1,29 +1,36 @@
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue'
+import { ref, defineProps, computed, watch } from 'vue'
 import { ModalStore } from '../../stores/Modal'
-import { TaskStore } from '../../stores/Task'
 import { useSortTasks } from '../../composables/useSortTasks'
 import ButtonsSort from '../TasksSection/ButtonsSort.vue'
 import TaskItem from '../TasksSection/TaskItem/TaskItem.vue'
-import { storeToRefs } from 'pinia'
+import type { Task } from '@/types/task'
 
 const props = defineProps<{
   title: string
+  tasks: Task[]
 }>()
 
+const tasksRef = ref<Task[]>(props.tasks)
+
+watch(
+  () => props.tasks,
+  (newTasks: Task[]) => {
+    tasksRef.value = newTasks
+  },
+)
+
 const modalStore = ModalStore()
-const taskStore = TaskStore()
-const { tasks } = storeToRefs(taskStore)
 
 const isListInView1 = ref<boolean>(false)
 const setIsListInView1 = (status: boolean) => {
   isListInView1.value = status
 }
 
-const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasks)
+const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasksRef)
 
 const tasksTitle = computed(() => {
-  return `${props.title} (${tasks.value.length} ${tasks.value.length === 1 ? 'task' : 'tasks'})`
+  return `${props.title} (${tasksRef.value.length} ${tasksRef.value.length === 1 ? 'task' : 'tasks'})`
 })
 </script>
 <template>

@@ -3,11 +3,8 @@ import IconView1 from '../../assets/view-1.svg'
 import IconView2 from '../../assets/view-2.svg'
 
 const sortValues = [
-  { value: 'order-added', title: 'Order added' },
   { value: 'min-date', title: 'Earlier first' },
   { value: 'max-date', title: 'Later first' },
-  { value: 'completed-first', title: 'Completed first' },
-  { value: 'uncompleted-first', title: 'Uncompleted first' },
 ]
 
 const props = defineProps<{

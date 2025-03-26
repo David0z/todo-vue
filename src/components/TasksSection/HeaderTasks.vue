@@ -2,7 +2,7 @@
 import BtnAddTask from '../Utilities/BtnAddTask.vue'
 import MenuIcon from '../../assets/menu.svg'
 import Avatar from '../../assets/avatar-1.jpg'
-// import SearchField from './SearchField'
+import SearchField from './SearchField.vue'
 import { MenuStore } from '../../stores/Menu'
 // import Notification from './Notification'
 
@@ -35,18 +35,18 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, '0')}-${day
   .padStart(2, '0')}}`
 </script>
 <template>
-  <header class="items-center grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-0 md:flex">
+  <header class="items-center justify-between grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-2 md:flex">
     <button class="mr-6 block xl:hidden" @click="menuStore.openMenuHeader" title="open menu">
       <MenuIcon />
     </button>
-    <!-- <SearchField /> -->
+    <SearchField />
     <div class="text-center">
       <span class="text-slate-600 dark:text-slate-200 uppercase font-bold text-sm block xl:hidden">
         To-do list
       </span>
       <time :dateTime="dateTimeFormat">{{ todayDate }}</time>
     </div>
-    <div class="flex flex-1">
+    <div class="flex">
       <!-- <Notification /> -->
       <BtnAddTask
         class="sm:static fixed bottom-3 right-3 z-10 sm:z-0 min-w-max shadow-lg shadow-slate-400 dark:shadow-slate-900 sm:shadow-transparent"

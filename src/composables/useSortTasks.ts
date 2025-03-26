@@ -40,37 +40,14 @@ export function useSortTasks(tasks: Ref<Task[]>) {
     return tasks.value
   }
 
-  function sortByCompletedStatus(completed: boolean): Task[] {
-    const tasksCopy = [...tasks.value]
-    const sorted = tasksCopy.sort((task1) => {
-      if (task1.completed) {
-        return -1
-      }
-      return 0
-    })
-    if (completed) {
-      return sorted
-    }
-    if (!completed) {
-      return sorted.reverse()
-    }
-    return tasks.value
-  }
-
   watch(
     [sortedBy, tasks],
     () => {
       if (sortedBy.value === 'min-date' || sortedBy.value === 'max-date') {
         setSortedTasks(sortByDate(sortedBy.value))
       }
-      if (sortedBy.value === '' || sortedBy.value === 'order-added') {
+      if (sortedBy.value === '') {
         setSortedTasks(tasks.value)
-      }
-      if (sortedBy.value === 'completed-first') {
-        setSortedTasks(sortByCompletedStatus(true))
-      }
-      if (sortedBy.value === 'uncompleted-first') {
-        setSortedTasks(sortByCompletedStatus(false))
       }
     },
     { immediate: true, deep: true },
