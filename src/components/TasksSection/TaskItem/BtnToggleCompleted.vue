@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import { TaskStore } from '../../../stores/Task'
+import SvgX from '../../../assets/x.svg'
+import Check from '../../../assets/check.svg'
+
+const props = defineProps<{
+  taskCompleted: boolean
+  taskId: string
+  isListInView1: boolean
+}>()
+
+const taskStore = TaskStore()
+</script>
+<template>
+  <button
+    :title="props.taskCompleted ? 'mark as uncompleted' : 'mark as completed'"
+    :class="`${
+      props.taskCompleted ? 'bg-emerald-200 text-emerald-800 ' : 'bg-amber-200 text-amber-800 '
+    } ${props.isListInView1 ? 'mr-4' : 'mr-4 order-0'} rounded-full font-medium`"
+    @click="taskStore.toggleTaskCompleted.bind(null, props.taskId)"
+  >
+    <span className="block py-1 px-3 absolute invisible sm:static sm:visible">
+      {{ props.taskCompleted ? 'completed' : 'uncompleted' }}
+    </span>
+    <span className=" sm:hidden w-6 h-6 grid place-items-center">
+      <Check className="w-3 h-3" v-if="props.taskCompleted" />
+      <SvgX className="w-3 h-3" v-else />
+    </span>
+  </button>
+</template>

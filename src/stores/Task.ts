@@ -5,7 +5,6 @@ import type { Task } from '../types/task'
 const defaultTasks: Task[] = [
   {
     title: 'Task 1',
-    important: false,
     description: 'This is the description for this task',
     date: '2023-04-12',
     completed: true,
@@ -13,7 +12,6 @@ const defaultTasks: Task[] = [
   },
   {
     title: 'Task 2',
-    important: true,
     description: 'This is the description for this task',
     date: '2023-05-15',
     completed: true,
@@ -21,7 +19,6 @@ const defaultTasks: Task[] = [
   },
   {
     title: 'Task 3',
-    important: false,
     description: 'This is the description for this task',
     date: '2023-08-21',
     completed: false,
@@ -43,8 +40,8 @@ export const TaskStore = defineStore('Task', () => {
     tasks.value = newTasksList
   }
 
-  function editTask(taskId: string, newTask: Task) {
-    const newTaskEdited: Task = tasks.value.find((task: Task) => task.id === taskId)!
+  function editTask(newTask: Task) {
+    const newTaskEdited: Task = tasks.value.find((task: Task) => task.id === newTask.id)!
     const indexTask = tasks.value.indexOf(newTaskEdited)
     tasks.value[indexTask] = newTask
   }

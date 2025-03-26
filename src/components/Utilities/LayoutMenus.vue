@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useScreenMedia } from '../composables/useScreenMedia'
+import { useScreenMedia } from '../../composables/useScreenMedia'
 const props = defineProps<{
   menuOpen: boolean
   closeMenuHandler: () => void

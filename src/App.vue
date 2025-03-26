@@ -3,7 +3,7 @@
 import Footer from './components/Footer.vue'
 import MainMenu from './components/Menu/MainMenu.vue'
 import TasksSection from './components/TasksSection/TasksSection.vue'
-import ModalCreateTask from './components/Utilities/ModalTask'
+import ModalCreateTask from './components/Utilities/ModalTask.vue'
 import { ModalStore } from './stores/Modal'
 import { TaskStore } from './stores/Task'
 
