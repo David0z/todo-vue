@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ModalContent from './ModalContent.vue'
+
 const props = defineProps<{
   onClose: () => void
   title: string

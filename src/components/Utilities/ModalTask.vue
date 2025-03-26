@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, defineProps } from 'vue'
 import type { Task } from '../../types/task'
+import InputCheckbox from '../Utilities/InputCheckbox.vue'
 import Modal from './ModalElement.vue'
 
 const props = defineProps<{

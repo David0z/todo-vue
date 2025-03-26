@@ -35,27 +35,25 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, '0')}-${day
   .padStart(2, '0')}}`
 </script>
 <template>
-  <header className="items-center grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-0 md:flex ">
-    <button className="mr-6 block xl:hidden" @click="menuStore.openMenuHeader" title="open menu">
-      <MenuIcon />
+  <header class="items-center grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-0 md:flex">
+    <button class="mr-6 block xl:hidden" @click="menuStore.openMenuHeader" title="open menu">
+      <img :src="MenuIcon" alt="" />
     </button>
     <!-- <SearchField /> -->
-    <div className="text-center">
-      <span
-        className="text-slate-600 dark:text-slate-200 uppercase font-bold text-sm block xl:hidden"
-      >
+    <div class="text-center">
+      <span class="text-slate-600 dark:text-slate-200 uppercase font-bold text-sm block xl:hidden">
         To-do list
       </span>
       <time :dateTime="dateTimeFormat">{{ todayDate }}</time>
     </div>
-    <div className="flex flex-1">
+    <div class="flex flex-1">
       <!-- <Notification /> -->
       <BtnAddTask
-        className="sm:static fixed bottom-3 right-3 z-10 sm:z-0 min-w-max shadow-lg shadow-slate-400  dark:shadow-slate-900 sm:shadow-transparent"
+        class="sm:static fixed bottom-3 right-3 z-10 sm:z-0 min-w-max shadow-lg shadow-slate-400 dark:shadow-slate-900 sm:shadow-transparent"
       />
 
-      <button @click="menuStore.openMenuAccount" className="block xl:hidden">
-        <img :src="avatar1" alt="cat" className="w-10 h-10 rounded-full ml-4" />
+      <button @click="menuStore.openMenuAccount" class="block xl:hidden">
+        <img :src="avatar1" alt="cat" class="w-10 h-10 rounded-full ml-4" />
       </button>
     </div>
   </header>

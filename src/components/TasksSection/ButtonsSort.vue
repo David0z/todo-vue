@@ -18,12 +18,12 @@ const props = defineProps<{
 }>()
 </script>
 <template>
-  <div className="flex children-styles">
+  <div class="flex children-styles">
     <button @click="() => props.setIsListInView1(true)" title="view in list">
-      <IconView1 :class="props.isListInView1 ? 'text-violet-600' : ''" />
+      <img :src="IconView1" alt="" :class="props.isListInView1 ? 'text-violet-600' : ''" />
     </button>
     <button @click="() => props.setIsListInView1(false)" title="view in grid">
-      <IconView2 :class="!props.isListInView1 ? 'text-violet-600' : ''" />
+      <img :src="IconView2" alt="" :class="!props.isListInView1 ? 'text-violet-600' : ''" />
     </button>
     <select
       class="ml-auto inputStyles"

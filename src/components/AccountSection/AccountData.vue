@@ -1,22 +1,19 @@
-<!-- <script setup lang="ts">
+<script setup lang="ts">
 import avatar1 from '../../assets/avatar-1.jpg'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { menusActions } from '../../store/Menu.store'
-import LayoutMenus from '../Utilities/LayoutMenus'
-import DarkMode from './DarkMode'
-import DeleteTasks from './DeleteTasks'
-import TasksDone from './TasksDone'
+import { MenuStore } from '../../stores/Menu'
+import LayoutMenus from '../Utilities/LayoutMenus.vue'
+import DarkMode from './DarkMode.vue'
+import DeleteTasks from './DeleteTasks.vue'
+import TasksDone from './TasksDone.vue'
 
-const menuOpen = useAppSelector((state) => state.menu.menuAccountOpened)
-
-const dispatch = useAppDispatch()
-
-const closeMenuHandler = () => {
-  dispatch(menusActions.closeMenuAccount())
-}
+const menusStore = MenuStore()
 </script>
 <template>
-  <LayoutMenus :menuOpen="menuOpen" :closeMenuHandler="closeMenuHandler" class="top-0 right-0">
+  <LayoutMenus
+    :menuOpen="menusStore.menuAccountOpened"
+    :closeMenuHandler="menusStore.closeMenuAccount"
+    class="top-0 right-0"
+  >
     <section class="p-5 flex flex-col h-full">
       <span class="flex items-center mx-auto">
         <span class="font-medium">Hi, User!</span>
@@ -35,4 +32,4 @@ const closeMenuHandler = () => {
       </a>
     </section>
   </LayoutMenus>
-</template> -->
+</template>

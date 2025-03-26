@@ -18,9 +18,9 @@ function setModalEditTaskOpen(value: boolean): void {
   <button
     title="edit task"
     class="transition w-7 sm:w-8 h-6 sm:h-8 grid place-items-center dark:hover:text-slate-200 hover:text-slate-700"
-    @click="setModalEditTaskOpen.bind(null, true)"
+    @click="setModalEditTaskOpen(true)"
   >
-    <OptionsSvg className="w-4 sm:w-5 h-4 sm:h-5" />
+    <img :src="OptionsSvg" class="w-4 sm:w-5 h-4 sm:h-5" />
   </button>
   <ModalCreateTask
     v-if="modalEditTaskOpen"

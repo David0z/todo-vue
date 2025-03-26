@@ -10,7 +10,7 @@ const dateFormated = useDate(props.task.date)
 <template>
   <div :class="`flex flex-col flex-1 ${isListInView1 ? 'mr-6' : ''}`">
     <div :class="`flex items-center justify-between ${isListInView1 ? 'mb-1' : 'mb-2'}`">
-      <span className="block font-medium dark:text-slate-200">
+      <span class="block font-medium dark:text-slate-200">
         {{ props.task.title }}
       </span>
     </div>
@@ -23,7 +23,7 @@ const dateFormated = useDate(props.task.date)
       {{ props.task.description }}
     </p>
     <time class="mt-auto flex w-full">
-      <Calendar class="mr-2 w-4 sm:w-5" /> {{ dateFormated }}
+      <img :src="Calendar" alt="" class="mr-2 w-4 sm:w-5" /> {{ dateFormated }}
     </time>
   </div>
 </template>

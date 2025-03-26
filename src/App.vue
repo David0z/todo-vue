@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import AccountData from './components/AccountSection/AccountData.vue'
+import AccountData from './components/AccountSection/AccountData.vue'
 import Footer from './components/Footer.vue'
 import MainMenu from './components/Menu/MainMenu.vue'
 import TasksSection from './components/TasksSection/TasksSection.vue'

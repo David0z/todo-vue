@@ -10,9 +10,9 @@ const classLinkActive =
 const { menuHeaderOpened, closeMenuHeader } = MenuStore()
 </script>
 <template>
-  <LayoutMenus :menuOpen="menuHeaderOpened" :closeMenuHandler="closeMenuHeader" className="left-0">
-    <header className="h-full flex flex-col">
-      <h1 className="font-bold uppercase text-center mt-8 text-lg tracking-wide hidden xl:block">
+  <LayoutMenus :menuOpen="menuHeaderOpened" :closeMenuHandler="closeMenuHeader" class="left-0">
+    <header class="h-full flex flex-col">
+      <h1 class="font-bold uppercase text-center mt-8 text-lg tracking-wide hidden xl:block">
         To-do list
       </h1>
       <BtnAddTask class="my-8 mx-4" />

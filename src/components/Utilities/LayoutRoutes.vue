@@ -1,30 +1,38 @@
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
-import type { Task } from '../../types/task'
+import { ref, defineProps, computed, watch } from 'vue'
 import { ModalStore } from '../../stores/Modal'
+import { TaskStore } from '../../stores/Task'
 import { useSortTasks } from '../../composables/useSortTasks'
 import ButtonsSort from '../TasksSection/ButtonsSort.vue'
 import TaskItem from '../TasksSection/TaskItem/TaskItem.vue'
+import { storeToRefs } from 'pinia'
 
 const props = defineProps<{
   title: string
-  tasks: Task[]
 }>()
 
 const modalStore = ModalStore()
+const taskStore = TaskStore()
+const { tasks } = storeToRefs(taskStore)
 const isListInView1 = ref<boolean>(false)
 const setIsListInView1 = (status: boolean) => {
   isListInView1.value = status
 }
 
-const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(props.tasks)
+watch(tasks, () => {
+  alert('something changed')
+})
 
-const tasksTitle = `${props.title} (${props.tasks.length} ${props.tasks.length === 1 ? 'task' : 'tasks'})`
+const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasks)
+
+const tasksTitle = computed(() => {
+  return `${props.title} (${tasks.value.length} ${tasks.value.length === 1 ? 'task' : 'tasks'})`
+})
 </script>
 <template>
   <section>
     <h1
-      className="font-medium my-5 text-center sm:text-left sm:my-8 md:text-2xl text-lg dark:text-slate-200"
+      class="font-medium my-5 text-center sm:text-left sm:my-8 md:text-2xl text-lg dark:text-slate-200"
     >
       {{ tasksTitle }}
     </h1>

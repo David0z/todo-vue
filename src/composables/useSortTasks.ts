@@ -1,7 +1,7 @@
 import type { Task } from '@/types/task'
-import { ref, watch } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
-export function useSortTasks(tasks: Task[]) {
+export function useSortTasks(tasks: Ref<Task[]>) {
   const sortedBy = ref<string>('')
   function setSortedBy(value: string) {
     sortedBy.value = value
@@ -13,7 +13,7 @@ export function useSortTasks(tasks: Task[]) {
 
   function sortByDate(order: 'max-date' | 'min-date'): Task[] {
     const toMillisseconds = (date: string) => Date.parse(date)
-    const tasksCopy = [...tasks]
+    const tasksCopy = [...tasks.value]
     const sorted = tasksCopy.sort((task1, task2) => {
       const date1 = toMillisseconds(task1.date)
       const date2 = toMillisseconds(task2.date)
@@ -37,11 +37,11 @@ export function useSortTasks(tasks: Task[]) {
       return sorted.reverse()
     }
 
-    return tasks
+    return tasks.value
   }
 
   function sortByCompletedStatus(completed: boolean): Task[] {
-    const tasksCopy = [...tasks]
+    const tasksCopy = [...tasks.value]
     const sorted = tasksCopy.sort((task1) => {
       if (task1.completed) {
         return -1
@@ -54,23 +54,27 @@ export function useSortTasks(tasks: Task[]) {
     if (!completed) {
       return sorted.reverse()
     }
-    return tasks
+    return tasks.value
   }
 
-  watch(sortedBy, () => {
-    if (sortedBy.value === 'min-date' || sortedBy.value === 'max-date') {
-      setSortedTasks(sortByDate(sortedBy.value))
-    }
-    if (sortedBy.value === '' || sortedBy.value === 'order-added') {
-      setSortedTasks(tasks)
-    }
-    if (sortedBy.value === 'completed-first') {
-      setSortedTasks(sortByCompletedStatus(true))
-    }
-    if (sortedBy.value === 'uncompleted-first') {
-      setSortedTasks(sortByCompletedStatus(false))
-    }
-  })
+  watch(
+    [sortedBy, tasks],
+    () => {
+      if (sortedBy.value === 'min-date' || sortedBy.value === 'max-date') {
+        setSortedTasks(sortByDate(sortedBy.value))
+      }
+      if (sortedBy.value === '' || sortedBy.value === 'order-added') {
+        setSortedTasks(tasks.value)
+      }
+      if (sortedBy.value === 'completed-first') {
+        setSortedTasks(sortByCompletedStatus(true))
+      }
+      if (sortedBy.value === 'uncompleted-first') {
+        setSortedTasks(sortByCompletedStatus(false))
+      }
+    },
+    { immediate: true, deep: true },
+  )
 
   return { sortedBy, setSortedBy, sortedTasks }
 }

@@ -1,3 +1,3 @@
 <template>
-  <footer className="text-center py-6 font-medium">To-do list</footer>
+  <footer class="text-center py-6 font-medium">To-do list</footer>
 </template>

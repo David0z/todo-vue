@@ -16,7 +16,7 @@ const { mediaQueries } = screenMedia
   </div>
   <div
     v-if="menuOpen && !mediaQueries.xl"
-    className="fixed bg-slate-600/[.2] w-full h-full z-10 top-0 left-0"
+    class="fixed bg-slate-600/[.2] w-full h-full z-10 top-0 left-0"
     @click="props.closeMenuHandler"
   ></div>
 </template>
