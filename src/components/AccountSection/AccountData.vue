@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import avatar1 from '../../assets/avatar-1.jpg'
+import Avatar from '../../assets/avatar-1.jpg'
 import { MenuStore } from '../../stores/Menu'
 import LayoutMenus from '../Utilities/LayoutMenus.vue'
 import DarkMode from './DarkMode.vue'
@@ -16,8 +16,8 @@ const menusStore = MenuStore()
   >
     <section class="p-5 flex flex-col h-full">
       <span class="flex items-center mx-auto">
-        <span class="font-medium">Hi, User!</span>
-        <img :src="avatar1" alt="cat" class="w-10 rounded-full ml-4" />
+        <span class="font-medium">Hello, User!</span>
+        <img :src="Avatar" class="w-10 rounded-full ml-4" />
       </span>
 
       <DarkMode />

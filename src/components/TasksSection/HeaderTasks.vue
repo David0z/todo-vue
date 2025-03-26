@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BtnAddTask from '../Utilities/BtnAddTask.vue'
 import MenuIcon from '../../assets/menu.svg'
-import avatar1 from '../../assets/avatar-1.jpg'
+import Avatar from '../../assets/avatar-1.jpg'
 // import SearchField from './SearchField'
 import { MenuStore } from '../../stores/Menu'
 // import Notification from './Notification'
@@ -37,7 +37,7 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, '0')}-${day
 <template>
   <header class="items-center grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-0 md:flex">
     <button class="mr-6 block xl:hidden" @click="menuStore.openMenuHeader" title="open menu">
-      <img :src="MenuIcon" alt="" />
+      <MenuIcon />
     </button>
     <!-- <SearchField /> -->
     <div class="text-center">
@@ -53,7 +53,7 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, '0')}-${day
       />
 
       <button @click="menuStore.openMenuAccount" class="block xl:hidden">
-        <img :src="avatar1" alt="cat" class="w-10 h-10 rounded-full ml-4" />
+        <img :src="Avatar" alt="cat" class="w-10 h-10 rounded-full ml-4" />
       </button>
     </div>
   </header>

@@ -21,7 +21,7 @@ function closeModalHandler(event: MouseEvent): void {
       class="relative bg-slate-200 max-w-lg w-full rounded-lg p-3 sm:p-5 flex flex-col justify-start dark:bg-slate-900"
     >
       <button aria-label="close alert" class="absolute right-3 sm:right-4" @click="props.onClose">
-        <img :src="SvgX" alt="" />
+        <SvgX />
       </button>
       <h2 class="font-medium mb-5 text-lg md:text-2xl">{{ props.title }}</h2>
       <slot />

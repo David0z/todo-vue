@@ -23,7 +23,7 @@ const dateFormated = useDate(props.task.date)
       {{ props.task.description }}
     </p>
     <time class="mt-auto flex w-full">
-      <img :src="Calendar" alt="" class="mr-2 w-4 sm:w-5" /> {{ dateFormated }}
+      <Calendar class="mr-2 w-4 sm:w-5" /> {{ dateFormated }}
     </time>
   </div>
 </template>

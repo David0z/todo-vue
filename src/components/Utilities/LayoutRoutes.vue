@@ -14,6 +14,7 @@ const props = defineProps<{
 const modalStore = ModalStore()
 const taskStore = TaskStore()
 const { tasks } = storeToRefs(taskStore)
+
 const isListInView1 = ref<boolean>(false)
 const setIsListInView1 = (status: boolean) => {
   isListInView1.value = status
