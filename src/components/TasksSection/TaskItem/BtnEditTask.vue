@@ -27,6 +27,6 @@ function setModalEditTaskOpen(value: boolean): void {
     :onClose="setModalEditTaskOpen.bind(null, false)"
     :task="props.task"
     nameForm="Edit task"
-    :onConfirm="taskStore.editTask.bind(null, props.task)"
+    :onConfirm="taskStore.editTask"
   />
 </template>

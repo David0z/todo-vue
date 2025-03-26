@@ -24,12 +24,6 @@ const menusStore = MenuStore()
 
       <TasksDone />
       <DeleteTasks />
-      <a
-        href="https://github.com/x1-il"
-        class="mt-4 bg-rose-100 p-2 rounded-md text-rose-600 text-center transition hover:bg-rose-200 dark:bg-slate-700/[.3] dark:text-slate-200"
-      >
-        Projected by Ibrahim Laklaa
-      </a>
     </section>
   </LayoutMenus>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, computed, watch } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import { ModalStore } from '../../stores/Modal'
 import { TaskStore } from '../../stores/Task'
 import { useSortTasks } from '../../composables/useSortTasks'
@@ -18,10 +18,6 @@ const isListInView1 = ref<boolean>(false)
 const setIsListInView1 = (status: boolean) => {
   isListInView1.value = status
 }
-
-watch(tasks, () => {
-  alert('something changed')
-})
 
 const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasks)
 
