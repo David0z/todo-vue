@@ -7,9 +7,6 @@ export function useFilterTasks(tasks: Ref<Task[]>) {
     filteredBy.value = value
   }
   const filteredTasks = ref<Task[]>([])
-  function setFilteredTasks(value: Task[]) {
-    filteredTasks.value = value
-  }
 
   function filterByStatus(filter: 'completed' | 'uncompleted'): Task[] {
     return tasks.value.filter((task) => {
@@ -27,10 +24,10 @@ export function useFilterTasks(tasks: Ref<Task[]>) {
     [filteredBy, tasks],
     () => {
       if (filteredBy.value === 'completed' || filteredBy.value === 'uncompleted') {
-        setFilteredTasks(filterByStatus(filteredBy.value))
+        filteredTasks.value = filterByStatus(filteredBy.value)
       }
       if (filteredBy.value === '') {
-        setFilteredTasks(tasks.value)
+        filteredTasks.value = tasks.value
       }
     },
     { immediate: true, deep: true },

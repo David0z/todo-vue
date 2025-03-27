@@ -7,9 +7,6 @@ export function useSortTasks(tasks: Ref<Task[]>) {
     sortedBy.value = value
   }
   const sortedTasks = ref<Task[]>([])
-  function setSortedTasks(value: Task[]) {
-    sortedTasks.value = value
-  }
 
   function sortByDate(order: 'max-date' | 'min-date'): Task[] {
     const toMillisseconds = (date: string) => Date.parse(date)
@@ -44,10 +41,10 @@ export function useSortTasks(tasks: Ref<Task[]>) {
     [sortedBy, tasks],
     () => {
       if (sortedBy.value === 'min-date' || sortedBy.value === 'max-date') {
-        setSortedTasks(sortByDate(sortedBy.value))
+        sortedTasks.value = sortByDate(sortedBy.value)
       }
       if (sortedBy.value === '') {
-        setSortedTasks(tasks.value)
+        sortedTasks.value = tasks.value
       }
     },
     { immediate: true, deep: true },

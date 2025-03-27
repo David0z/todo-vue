@@ -17,12 +17,12 @@ function setShowModal(value: boolean): void {
   <ModalConfirm
     v-if="showModal"
     :onClose="() => setShowModal(false)"
-    text="This task will be deleted permanently."
+    text="To zadanie zostanie usunięte permanentnie."
     :onConfirm="taskStore.removeTask.bind(null, props.taskId)"
   />
   <button
     @click="() => setShowModal(true)"
-    title="delete task"
+    title="usuń zadanie"
     class="ml-2 transition hover:text-slate-700 dark:hover:text-slate-200"
   >
     <Trash class="w-5 h-5 sm:w-6 sm:h-6" />

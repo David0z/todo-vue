@@ -3,13 +3,13 @@ import IconView1 from '../../assets/view-1.svg'
 import IconView2 from '../../assets/view-2.svg'
 
 const sortValues = [
-  { value: 'min-date', title: 'Earlier first' },
-  { value: 'max-date', title: 'Later first' },
+  { value: 'min-date', title: 'Od najstarszych' },
+  { value: 'max-date', title: 'Od najnowszych' },
 ]
 
 const filterValues = [
-  { value: 'completed', title: 'Completed' },
-  { value: 'uncompleted', title: 'Uncompleted' },
+  { value: 'completed', title: 'Ukończone' },
+  { value: 'uncompleted', title: 'Nieukończone' },
 ]
 
 const props = defineProps<{
@@ -24,11 +24,11 @@ const props = defineProps<{
 <template>
   <div class="sm:flex sm:justify-between">
     <div class="flex children-styles">
-      <button @click="() => props.setIsListInView1(true)" title="view in list">
-        <IconView1 :class="props.isListInView1 ? 'text-violet-600' : ''" />
+      <button @click="() => props.setIsListInView1(true)" title="wyświetl jako lista">
+        <IconView1 :class="props.isListInView1 ? 'text-blue-600' : ''" />
       </button>
-      <button @click="() => props.setIsListInView1(false)" title="view in grid">
-        <IconView2 :class="!props.isListInView1 ? 'text-violet-600' : ''" />
+      <button @click="() => props.setIsListInView1(false)" title="wyświetl jako karty">
+        <IconView2 :class="!props.isListInView1 ? 'text-blue-600' : ''" />
       </button>
     </div>
     <div class="flex gap-2">
@@ -37,7 +37,7 @@ const props = defineProps<{
         :value="props.filteredBy"
         @change="({ target }) => props.setFilteredBy((target as HTMLSelectElement).value)"
       >
-        <option value="" disabled>Filter by</option>
+        <option value="">Filtruj</option>
         <option
           v-for="val in filterValues"
           :key="String(val.value)"
@@ -52,7 +52,7 @@ const props = defineProps<{
         :value="props.sortedBy"
         @change="({ target }) => props.setSortedBy((target as HTMLSelectElement).value)"
       >
-        <option value="" disabled>Sort by</option>
+        <option value="">Sortuj</option>
         <option
           v-for="val in sortValues"
           :key="val.value"

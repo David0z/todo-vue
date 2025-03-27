@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Task } from '../../../types/task'
 import Calendar from '../../../assets/date.svg'
-import useDate from '../../../composables/useDate'
+import formatedDate from '@/composables/useDate'
+import { computed } from 'vue'
 
 const props = defineProps<{ task: Task; isListInView1: boolean }>()
-
-const dateFormated = useDate(props.task.date)
+const dateFormated = computed(() => formatedDate(props.task.date))
 </script>
 <template>
   <div :class="`flex flex-col flex-1 ${isListInView1 ? 'mr-6' : ''}`">

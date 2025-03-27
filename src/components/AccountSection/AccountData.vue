@@ -16,7 +16,7 @@ const menusStore = MenuStore()
   >
     <section class="p-5 flex flex-col h-full">
       <span class="flex items-center mx-auto">
-        <span class="font-medium">Hello, User!</span>
+        <span class="font-medium">Witaj, Użytkowniku!</span>
         <img :src="Avatar" class="w-10 rounded-full ml-4" />
       </span>
 

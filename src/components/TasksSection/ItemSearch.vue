@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import useDate from '@/composables/useDate'
+import formatedDate from '@/composables/useDate'
 import type { Task } from '@/types/task'
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const props = defineProps<{ task: Task }>()
-const dateFormated = useDate(props.task.date)
+const dateFormated = computed(() => formatedDate(props.task.date))
 </script>
 <template>
   <li :key="props.task.id" class="py-2">

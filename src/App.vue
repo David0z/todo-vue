@@ -18,7 +18,7 @@ const taskStore = TaskStore()
     <ModalCreateTask
       v-if="modalStore.modalCreateTaskOpen"
       :onClose="modalStore.closeModalCreateTask"
-      nameForm="Add a task"
+      nameForm="Dodaj zadanie"
       :onConfirm="taskStore.addNewTask"
     />
     <MainMenu />

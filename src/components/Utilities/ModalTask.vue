@@ -58,31 +58,21 @@ function addNewTaskHandler(): void {
   <Modal :onClose="props.onClose" :title="props.nameForm">
     <form class="flex flex-col stylesInputsField" @submit.prevent="addNewTaskHandler">
       <label>
-        Title
-        <input
-          type="text"
-          class="w-full"
-          placeholder="e.g, study for the test"
-          required
-          v-model="title"
-        />
+        Tytuł
+        <input type="text" class="w-full" placeholder="np. zrób zakupy" required v-model="title" />
       </label>
       <label>
-        Date
+        Data
         <input type="date" class="w-full" required v-model="date" :min="todayDate" :max="maxDate" />
       </label>
       <label>
-        Description (optional)
-        <textarea
-          placeholder="e.g, study for the test"
-          class="w-full"
-          v-model="description"
-        ></textarea>
+        Opis (opcjonalnie)
+        <textarea placeholder="np. zrób zakupy" class="w-full" v-model="description"></textarea>
       </label>
       <InputCheckbox
         :isChecked="isCompleted"
         :setChecked="setIsCompleted"
-        label="Mark as completed"
+        label="Oznacz jako ukończone"
       />
       <button type="submit" class="btn mt-5">{{ props.nameForm }}</button>
     </form>

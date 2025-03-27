@@ -49,7 +49,7 @@ watch(searchInputValue, () => {
       <input
         type="search"
         id="search"
-        placeholder="Search task"
+        placeholder="Szukaj zadania"
         ref="searchResultsRef"
         @keyup="
           ({ currentTarget }) => {
@@ -72,11 +72,11 @@ watch(searchInputValue, () => {
             @click="navigateToSearchResults"
             class="bg-rose-100 w-full p-2 rounded-md text-rose-600 dark:bg-slate-700/[.3] dark:text-slate-200"
           >
-            All results for "{{ searchInputValue }}"
+            Wszystkie wyniki dla "{{ searchInputValue }}"
           </button>
         </template>
         <template v-else>
-          <span>No tasks found</span>
+          <span>Brak znalezionych zadań</span>
         </template>
       </div>
     </form>

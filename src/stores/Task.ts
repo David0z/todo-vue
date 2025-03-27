@@ -1,28 +1,77 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { Task } from '../types/task'
 
 const defaultTasks: Task[] = [
   {
-    title: 'Task 1',
-    description: 'This is the description for this task',
-    date: '2023-04-12',
+    title: 'Zadanie 1',
+    description: 'Opis zadania 1',
+    date: '2025-03-24',
     completed: true,
     id: 't1',
   },
   {
-    title: 'Task 2',
-    description: 'This is the description for this task',
-    date: '2023-05-15',
-    completed: true,
+    title: 'Zadanie 2',
+    description: 'Opis zadania 2',
+    date: '2025-03-25',
+    completed: false,
     id: 't2',
   },
   {
-    title: 'Task 3',
-    description: 'This is the description for this task',
-    date: '2023-08-21',
-    completed: false,
+    title: 'Zadanie 3',
+    description: 'Opis zadania 3',
+    date: '2025-03-26',
+    completed: true,
     id: 't3',
+  },
+  {
+    title: 'Zadanie 4',
+    description: 'Opis zadania 4',
+    date: '2025-03-27',
+    completed: false,
+    id: 't4',
+  },
+  {
+    title: 'Zadanie 5',
+    description: 'Opis zadania 5',
+    date: '2025-03-28',
+    completed: true,
+    id: 't5',
+  },
+  {
+    title: 'Zadanie 6',
+    description: 'Opis zadania 6',
+    date: '2025-03-29',
+    completed: false,
+    id: 't6',
+  },
+  {
+    title: 'Zadanie 7',
+    description: 'Opis zadania 7',
+    date: '2025-03-30',
+    completed: true,
+    id: 't7',
+  },
+  {
+    title: 'Zadanie 8',
+    description: 'Opis zadania 8',
+    date: '2025-03-31',
+    completed: false,
+    id: 't8',
+  },
+  {
+    title: 'Zadanie 9',
+    description: 'Opis zadania 9',
+    date: '2025-04-01',
+    completed: true,
+    id: 't9',
+  },
+  {
+    title: 'Zadanie 10',
+    description: 'Opis zadania 10',
+    date: '2025-04-02',
+    completed: false,
+    id: 't10',
   },
 ]
 
@@ -59,6 +108,14 @@ export const TaskStore = defineStore('Task', () => {
   function getTaskById(taskId: string): Task {
     return tasks.value.find((task) => task.id === taskId)!
   }
+
+  watch(
+    tasks,
+    () => {
+      localStorage.setItem('tasks', JSON.stringify(tasks.value))
+    },
+    { deep: true },
+  )
 
   return {
     tasks,

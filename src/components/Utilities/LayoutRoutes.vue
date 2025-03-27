@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import { ref, defineProps, computed, watch } from 'vue'
+import { ref, defineProps, computed, toRef } from 'vue'
 import { ModalStore } from '@/stores/Modal'
 import { useSortTasks } from '@/composables/useSortTasks'
 import ButtonsSort from '../TasksSection/ButtonsSort.vue'
 import TaskItem from '../TasksSection/TaskItem/TaskItem.vue'
 import type { Task } from '@/types/task'
 import { useFilterTasks } from '@/composables/useFilterTasks'
+import { inflectTask } from '@/util/number'
 
 const props = defineProps<{
   title: string
   tasks: Task[]
 }>()
 
-const tasksRef = ref<Task[]>(props.tasks)
-
-watch(
-  () => props.tasks,
-  (newTasks: Task[]) => {
-    tasksRef.value = newTasks
-  },
-)
+const tasksRef = toRef(props, 'tasks')
 
 const modalStore = ModalStore()
 
@@ -32,7 +26,7 @@ const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasksRef)
 const { filteredBy, setFilteredBy, filteredTasks } = useFilterTasks(sortedTasks)
 
 const tasksTitle = computed(() => {
-  return `${props.title} (${filteredTasks.value.length} ${filteredTasks.value.length === 1 ? 'task' : 'tasks'})`
+  return `${props.title} (${inflectTask(filteredTasks.value.length)})`
 })
 </script>
 <template>
@@ -50,7 +44,9 @@ const tasksTitle = computed(() => {
       :filteredBy="filteredBy"
       :setFilteredBy="setFilteredBy"
     />
-    <ul
+    <TransitionGroup
+      name="list"
+      tag="ul"
       :class="`tasksList mt-4 grid gap-2 sm:gap-4 xl:gap-6 ${
         isListInView1
           ? 'grid-cols-1'
@@ -63,7 +59,7 @@ const tasksTitle = computed(() => {
         :isListInView1="isListInView1"
         :task="task"
       />
-      <li>
+      <li key="addNewTask">
         <button
           @click="modalStore.openModalCreateTask"
           :class="`border-2 border-slate-300
@@ -74,9 +70,20 @@ const tasksTitle = computed(() => {
                  isListInView1 ? 'h-20 sm:h-32' : 'h-52 sm:h-64'
                }`"
         >
-          Add new task
+          Dodaj nowe zadanie
         </button>
       </li>
-    </ul>
+    </TransitionGroup>
   </section>
 </template>
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0%);
+}
+</style>

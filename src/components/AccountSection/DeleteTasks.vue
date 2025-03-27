@@ -13,13 +13,13 @@ const taskStore = TaskStore()
   <ModalConfirm
     v-if="showModal"
     :onClose="() => setShowModal(false)"
-    text="All data will be deleted permanently."
+    text="Wszystkie dane zostaną permanentnie usunięte."
     :onConfirm="taskStore.deleteAllData"
   />
   <button
     class="mt-auto text-left pt-4 hover:text-rose-600 dark:hover:text-slate-200 transition"
     @click="() => setShowModal(true)"
   >
-    Delete all data
+    Usuń wszystkie zadania
   </button>
 </template>

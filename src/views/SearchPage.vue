@@ -15,5 +15,5 @@ watch(
 )
 </script>
 <template>
-  <LayoutRoutes title="Matched tasks" :tasks="matchedTasks"></LayoutRoutes>
+  <LayoutRoutes title="Wyniki wyszukiwania" :tasks="matchedTasks"></LayoutRoutes>
 </template>

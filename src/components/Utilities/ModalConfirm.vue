@@ -13,11 +13,11 @@ function confirmAndCloseModal() {
 }
 </script>
 <template>
-  <Modal :onClose="props.onClose" title="Are you sure?">
+  <Modal :onClose="props.onClose" title="Czy jesteś pewien?">
     <p class="text-slate-500">{{ props.text }}</p>
     <div class="mt-7 ml-auto">
-      <button @click="props.onClose">Cancel</button>
-      <button @click="confirmAndCloseModal" class="btn ml-6">Confirm</button>
+      <button @click="props.onClose">Anuluj</button>
+      <button @click="confirmAndCloseModal" class="btn ml-6">Potwierdź</button>
     </div>
   </Modal>
 </template>

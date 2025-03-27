@@ -4,6 +4,6 @@ const modalStore = ModalStore()
 </script>
 <template>
   <button :class="['btn', $attrs.class]" @click="modalStore.openModalCreateTask">
-    Add new task
+    Dodaj nowe zadanie
   </button>
 </template>

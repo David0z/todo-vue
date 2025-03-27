@@ -25,11 +25,11 @@ watch(
 </script>
 <template>
   <button class="mt-8 text-left flex items-center justify-between" @click="toggleDarkMode">
-    <span class="dark:text-slate-200">Darkmode</span>
+    <span class="dark:text-slate-200">Tryb Ciemny</span>
     <div
       class="w-10 h-5 bg-slate-200 rounded-full px-0.5 dark:bg-slate-700/[.3] relative flex items-center dark:justify-end"
     >
-      <div class="w-4 h-4 rounded-full bg-violet-600 absolute"></div>
+      <div class="w-4 h-4 rounded-full bg-blue-600 absolute"></div>
     </div>
   </button>
 </template>

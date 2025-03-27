@@ -17,5 +17,5 @@ watch(
 )
 </script>
 <template>
-  <LayoutRoutes title="Found task" :tasks="foundTasks"></LayoutRoutes>
+  <LayoutRoutes title="Znalezione zadanie" :tasks="foundTasks"></LayoutRoutes>
 </template>
