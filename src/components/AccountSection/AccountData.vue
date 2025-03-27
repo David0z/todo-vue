@@ -4,7 +4,6 @@ import { MenuStore } from '../../stores/Menu'
 import LayoutMenus from '../Utilities/LayoutMenus.vue'
 import DarkMode from './DarkMode.vue'
 import DeleteTasks from './DeleteTasks.vue'
-import TasksDone from './TasksDone.vue'
 
 const menusStore = MenuStore()
 </script>
@@ -22,7 +21,6 @@ const menusStore = MenuStore()
 
       <DarkMode />
 
-      <TasksDone />
       <DeleteTasks />
     </section>
   </LayoutMenus>

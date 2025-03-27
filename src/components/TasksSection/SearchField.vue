@@ -5,37 +5,38 @@ import useSearchQuery from '@/composables/useSearchQuery'
 import useVisibility from '@/composables/useVisibility'
 import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { refDebounced } from '@vueuse/core'
 
 const router = useRouter()
 
 const searchResultsRef = ref<HTMLInputElement>()
 const searchInputValue = ref<string>('')
-function setSearchInputValue(value: string) {
-  searchInputValue.value = value
-}
+const debounced = refDebounced(searchInputValue, 1000)
 
-const matchedTasks = useSearchQuery(searchInputValue)
+const matchedTasks = useSearchQuery(debounced)
 const tasks = computed(() => matchedTasks.value.slice(0, 4))
 
 const {
   elementIsVisible: listResultsVisible,
   showElement: showListResults,
   closeElement: closeListResults,
-} = useVisibility([searchResultsRef], () => setSearchInputValue(''))
+} = useVisibility([searchResultsRef], () => (searchInputValue.value = ''))
 
 function navigateToSearchResults() {
   if (listResultsVisible.value) {
     router.push({
       name: 'search',
       query: {
-        q: searchInputValue.value,
+        q: debounced.value,
       },
     })
   }
 }
 
-watch(searchInputValue, () => {
-  if (searchInputValue.value.trim().length > 0) {
+watch(debounced, () => {
+  console.log('value updated')
+
+  if (debounced.value.trim().length > 0) {
     showListResults()
   } else {
     closeListResults()
@@ -51,12 +52,7 @@ watch(searchInputValue, () => {
         id="search"
         placeholder="Szukaj zadania"
         ref="searchResultsRef"
-        @keyup="
-          ({ currentTarget }) => {
-            // @TODO DEBOUNCE
-            setSearchInputValue((currentTarget as HTMLInputElement).value)
-          }
-        "
+        v-model="searchInputValue"
         class="inputStyles w-full"
       />
       <Search class="absolute w-4 sm:w-5 right-4 top-3.5 text-slate-400" />
