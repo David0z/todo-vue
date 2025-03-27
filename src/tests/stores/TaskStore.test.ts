@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { TaskStore } from '../../stores/Task'
 import type { Task } from '@/types/task'
@@ -16,6 +16,11 @@ describe('taskStore', () => {
     setActivePinia(createPinia())
   })
 
+  afterEach(() => {
+    const taskStore = TaskStore()
+    taskStore.removeTask(newTask.id)
+  })
+
   it('should create a task', () => {
     const taskStore = TaskStore()
     taskStore.addNewTask(newTask)
@@ -26,20 +31,22 @@ describe('taskStore', () => {
     }
   })
 
-  // it('should update a task', () => {
-  //   const taskStore = TaskStore()
-  //   taskStore.addNewTask('Old Task')
-  //   const taskId = taskStore.tasks[0].id
-  //   taskStore.editTask(taskId, 'Updated Task')
-  //   const updatedTask = taskStore.tasks.find(task => task.id === taskId)
-  //   expect(updatedTask?.title).toBe('Updated Task')
-  // })
+  it('should update a task', () => {
+    const taskStore = TaskStore()
+    taskStore.addNewTask(newTask)
+    const taskId = taskStore.tasks[0].id
+    const newTitle = 'Updated Task'
+    taskStore.editTask({ ...newTask, title: newTitle })
+    const updatedTask = taskStore.tasks.find((task) => task.id === taskId)
+    expect(updatedTask?.title).toBe(newTitle)
+  })
 
-  // it('should delete a task', () => {
-  //   const taskStore = TaskStore()
-  //   taskStore.addNewTask('Task to delete')
-  //   const taskId = taskStore.tasks[0].id
-  //   taskStore.removeTask(taskId)
-  //   expect(taskStore.tasks.length).toBe(0)
-  // })
+  it('should delete a task', () => {
+    const taskStore = TaskStore()
+    taskStore.addNewTask(newTask)
+    expect(taskStore.tasks.length).toBe(11)
+    const taskId = taskStore.tasks[0].id
+    taskStore.removeTask(taskId)
+    expect(taskStore.tasks.length).toBe(10)
+  })
 })
