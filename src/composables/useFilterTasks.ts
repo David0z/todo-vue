@@ -1,14 +1,16 @@
 import type { Task } from '@/types/task'
 import { ref, watch, type Ref } from 'vue'
 
+export type Filter = 'completed' | 'uncompleted' | ''
+
 export function useFilterTasks(tasks: Ref<Task[]>) {
-  const filteredBy = ref<string>('')
-  function setFilteredBy(value: string) {
+  const filteredBy = ref<Filter>('')
+  function setFilteredBy(value: Filter) {
     filteredBy.value = value
   }
   const filteredTasks = ref<Task[]>([])
 
-  function filterByStatus(filter: 'completed' | 'uncompleted'): Task[] {
+  function filterByStatus(filter: Filter): Task[] {
     return tasks.value.filter((task) => {
       if (filter === 'completed') {
         return task.completed

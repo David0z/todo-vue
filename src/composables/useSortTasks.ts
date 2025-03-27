@@ -1,14 +1,16 @@
 import type { Task } from '@/types/task'
 import { ref, watch, type Ref } from 'vue'
 
+export type Sort = 'min-date' | 'max-date' | ''
+
 export function useSortTasks(tasks: Ref<Task[]>) {
-  const sortedBy = ref<string>('')
-  function setSortedBy(value: string) {
+  const sortedBy = ref<Sort>('')
+  function setSortedBy(value: Sort) {
     sortedBy.value = value
   }
   const sortedTasks = ref<Task[]>([])
 
-  function sortByDate(order: 'max-date' | 'min-date'): Task[] {
+  function sortByDate(order: Sort): Task[] {
     const toMillisseconds = (date: string) => Date.parse(date)
     const tasksCopy = [...tasks.value]
     const sorted = tasksCopy.sort((task1, task2) => {
