@@ -24,12 +24,14 @@ const {
 } = useVisibility([searchResultsRef], () => setSearchInputValue(''))
 
 function navigateToSearchResults() {
-  router.push({
-    name: 'search',
-    query: {
-      q: searchInputValue.value,
-    },
-  })
+  if (listResultsVisible.value) {
+    router.push({
+      name: 'search',
+      query: {
+        q: searchInputValue.value,
+      },
+    })
+  }
 }
 
 watch(searchInputValue, () => {
@@ -51,6 +53,7 @@ watch(searchInputValue, () => {
         ref="searchResultsRef"
         @keyup="
           ({ currentTarget }) => {
+            // @TODO DEBOUNCE
             setSearchInputValue((currentTarget as HTMLInputElement).value)
           }
         "

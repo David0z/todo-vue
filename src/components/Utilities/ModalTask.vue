@@ -59,7 +59,13 @@ function addNewTaskHandler(): void {
     <form class="flex flex-col stylesInputsField" @submit.prevent="addNewTaskHandler">
       <label>
         Title
-        <input type="text" placeholder="e.g, study for the test" required v-model="title" />
+        <input
+          type="text"
+          class="w-full"
+          placeholder="e.g, study for the test"
+          required
+          v-model="title"
+        />
       </label>
       <label>
         Date

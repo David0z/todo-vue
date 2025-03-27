@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, defineProps, computed, watch } from 'vue'
-import { ModalStore } from '../../stores/Modal'
-import { useSortTasks } from '../../composables/useSortTasks'
+import { ModalStore } from '@/stores/Modal'
+import { useSortTasks } from '@/composables/useSortTasks'
 import ButtonsSort from '../TasksSection/ButtonsSort.vue'
 import TaskItem from '../TasksSection/TaskItem/TaskItem.vue'
 import type { Task } from '@/types/task'
+import { useFilterTasks } from '@/composables/useFilterTasks'
 
 const props = defineProps<{
   title: string
@@ -28,9 +29,10 @@ const setIsListInView1 = (status: boolean) => {
 }
 
 const { sortedBy, setSortedBy, sortedTasks } = useSortTasks(tasksRef)
+const { filteredBy, setFilteredBy, filteredTasks } = useFilterTasks(sortedTasks)
 
 const tasksTitle = computed(() => {
-  return `${props.title} (${tasksRef.value.length} ${tasksRef.value.length === 1 ? 'task' : 'tasks'})`
+  return `${props.title} (${filteredTasks.value.length} ${filteredTasks.value.length === 1 ? 'task' : 'tasks'})`
 })
 </script>
 <template>
@@ -45,6 +47,8 @@ const tasksTitle = computed(() => {
       :setIsListInView1="setIsListInView1"
       :sortedBy="sortedBy"
       :setSortedBy="setSortedBy"
+      :filteredBy="filteredBy"
+      :setFilteredBy="setFilteredBy"
     />
     <ul
       :class="`tasksList mt-4 grid gap-2 sm:gap-4 xl:gap-6 ${
@@ -54,7 +58,7 @@ const tasksTitle = computed(() => {
       }`"
     >
       <TaskItem
-        v-for="task in sortedTasks"
+        v-for="task in filteredTasks"
         :key="task.id"
         :isListInView1="isListInView1"
         :task="task"

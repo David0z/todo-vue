@@ -56,6 +56,10 @@ export const TaskStore = defineStore('Task', () => {
     tasks.value = []
   }
 
+  function getTaskById(taskId: string): Task {
+    return tasks.value.find((task) => task.id === taskId)!
+  }
+
   return {
     tasks,
     addNewTask,
@@ -63,5 +67,6 @@ export const TaskStore = defineStore('Task', () => {
     editTask,
     toggleTaskCompleted,
     deleteAllData,
+    getTaskById,
   }
 })
