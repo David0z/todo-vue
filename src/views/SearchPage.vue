@@ -4,5 +4,5 @@ import { TaskStore } from '@/stores/Task'
 const taskStore = TaskStore()
 </script>
 <template>
-  <LayoutRoutes title="Found task" :tasks="taskStore.tasks"></LayoutRoutes>
+  <LayoutRoutes title="Search results" :tasks="taskStore.tasks"></LayoutRoutes>
 </template>

@@ -47,7 +47,6 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, '0')}-${day
       <time :dateTime="dateTimeFormat">{{ todayDate }}</time>
     </div>
     <div class="flex">
-      <!-- <Notification /> -->
       <BtnAddTask
         class="sm:static fixed bottom-3 right-3 z-10 sm:z-0 min-w-max shadow-lg shadow-slate-400 dark:shadow-slate-900 sm:shadow-transparent"
       />
